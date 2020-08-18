@@ -1,0 +1,25 @@
+#include<stdio.h>
+void coin_change(int coin[],int totalCoin,int change)
+{
+    int m[change+1],min,i,j;
+    m[0]=0;
+    for(i=1; i<=change; i++){
+        min=change+1;
+        for(j=0; j<totalCoin; j++){
+            if(coin[j]<=i){
+                    if(m[i-coin[j]]+1 < min)
+                    min= m[i-coin[j]]+1;
+            }
+        m[i]=min;
+    }
+    if(m[change]==0)
+        printf("Change is not possible\n");
+    else
+      printf("Coin need: %d \n",m[change]);
+}
+    int main() {
+    int i,totalCoin=4,change=16;
+    int coin[]= {1,2,5,14};
+    coin_change(coin,totalCoin,change);
+    return 0;
+}
